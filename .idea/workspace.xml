@@ -42,8 +42,8 @@
       <file leaf-file-name="MainClass.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MainClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8744856">
-              <caret line="31" column="118" selection-start-line="31" selection-start-column="118" selection-end-line="31" selection-end-column="118" />
+            <state vertical-scroll-proportion="0.6152263">
+              <caret line="52" column="131" selection-start-line="52" selection-start-column="131" selection-end-line="52" selection-end-column="131" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,10 +148,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="testselenium" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -610,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MainClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8744856">
-          <caret line="31" column="118" selection-start-line="31" selection-start-column="118" selection-end-line="31" selection-end-column="118" />
+        <state vertical-scroll-proportion="0.6152263">
+          <caret line="52" column="131" selection-start-line="52" selection-start-column="131" selection-end-line="52" selection-end-column="131" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
