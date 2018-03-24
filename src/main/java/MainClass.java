@@ -21,38 +21,26 @@ public class MainClass {
 
         /*методы для управления размером окна браузера*/
         driver.manage().window().maximize();// метод открывает в максимальном размере окно браузера
-        driver.manage().window().setSize(new Dimension(1330, 900));//устанавливаем размер окна браузера
 
+        /*РАБОТА С КНОПКАМИ*/
 
-        /*метод .get самый популярный метод отрытия вебстраницы*/
-        driver.get("https://docs.seleniumhq.org");// указываем драйверу открыть окно ФФ через метод get. И открыть ссылку на сайт Селенеум
+        driver.get("https://ru.wikipedia.org");//открываем сайт википедии
+        driver.findElement(By.xpath("//input[@id='searchButton']")).click();//находим елемент поиск и кликаем
 
+        driver.get("https://www.spreadshirt.co.uk");//открываем сайт
+        driver.findElement(By.xpath("//*[@id='basketButton']/div[1]")).click();//кликаем по елементу корзина
 
-        /*методы с navigate*/
-        driver.navigate().to("https://www.youtube.com/watch?v=qoIp4g8YVjA");//альтернативный метод для запуска веб странички
-        driver.navigate().back();//метод возвращает на предыдущую вебстраницу
-        driver.navigate().forward();// метод открывает следующую вебстраницу
-        driver.navigate().refresh();// перегрузка вебстраницы
+        driver.get("https://github.com");// открыли сайт гитхаб
+        WebElement button = driver.findElement(By.xpath("/html/body/div[4]/div[1]/div/div/div[2]/div/form/button"));// присвоили вебелементу класса вебелемент значение
+        //кнопки
+            if (button.getText().equals("Sign up for GitHub")){
+                System.out.println("Button test is " + button.getText());
+        }
+            else System.out.println("The btn text is not correct");
 
-        System.out.println(driver.getTitle());// метод .getTitle выводит в нашу консоль тайтл страницы на которой мы находимся
-        System.out.println(driver.getCurrentUrl());//метод .getCurrentUrl выводит url страницы на которой мы находимся в нашу консоль
+        //button.submit();//вызываем метод submit для елемента button
+        driver.findElement(By.xpath("/html/body/div[4]/div[1]/div/div/div[2]/div/form/button")).click();
 
-        driver.get("https://ru.wikipedia.org/wiki");// открываем вебстраницу википедии для теста
-
-        /*для размещения вебелементов в какой то переменной, то мы должны инициализировать переменную класса WebElement
-        * с помощью метода findElement мы можем находить различные елементы на вебстранице*/
-
-        WebElement link = driver.findElement(By.linkText("pt-login"));//поиск елемента по ссылке
-        WebElement partOfLink = driver.findElement(By.partialLinkText("об ошибке"));//поиск елемента по части ссылки
-        WebElement searchField = driver.findElement(By.name("search"));//поиск елемента по имени (присвоили этому
-        //елементу имя searchField
-        WebElement searchButton = driver.findElement(By.className("searchButton"));// поиск елемента по имени класса, для быстрого поиска инспект. вебстраницы
-        WebElement history = driver.findElement(By.id("ca-history"));//поиск елемента по id елемента
-
-        WebElement element = driver.findElement(By.cssSelector("#searchInput")); // поиск елементов по CSS селектору(не очень популярно)
-        WebElement elementLogo = driver.findElement(By.xpath("//*[@id='p-logo']/a")); // поиск елемента по X-Path (очень популярно)
-
-
-        driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
+        //driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
     }
 }
