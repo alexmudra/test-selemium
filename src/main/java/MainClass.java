@@ -22,24 +22,23 @@ public class MainClass {
         /*методы для управления размером окна браузера*/
         driver.manage().window().maximize();// метод открывает в максимальном размере окно браузера
 
-        /*РАБОТА С КНОПКАМИ*/
+        /*РАБОТА С ТЕКСТОВЫМИ ПОЛЯМИ. КАК ЗАПОЛНЯТЬ И ОТОБРАЖАТЬ ТЕКСТ В ТЕКСТОВЫХ ПОЛЯХ*/
 
-        driver.get("https://ru.wikipedia.org");//открываем сайт википедии
-        driver.findElement(By.xpath("//input[@id='searchButton']")).click();//находим елемент поиск и кликаем
+        /*driver.get("https://ru.wikipedia.org");//открываем сайт википедии
+        driver.findElement(By.xpath("//*[@id=\"searchInput\"]")).sendKeys("car");// method .sendKeys вставляе текст в текстове поле
+        driver.findElement(By.xpath("//*[@id=\"searchButton\"]")).click();//находим елемент поиск и кликаем
+        driver.findElement(By.xpath("//*[@id=\"searchButton\"]")).click();//находим елемент поиск и кликаем
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"searchText\"]")).getAttribute("value"));
+        driver.findElement(By.xpath("//*[@id=\"ooui-php-1\"]")).clear();// .clear очищает поле ввода*/
 
-        driver.get("https://www.spreadshirt.co.uk");//открываем сайт
-        driver.findElement(By.xpath("//*[@id='basketButton']/div[1]")).click();//кликаем по елементу корзина
+        // Попробуем поиграть с другим ресурсом
 
-        driver.get("https://github.com");// открыли сайт гитхаб
-        WebElement button = driver.findElement(By.xpath("/html/body/div[4]/div[1]/div/div/div[2]/div/form/button"));// присвоили вебелементу класса вебелемент значение
-        //кнопки
-            if (button.getText().equals("Sign up for GitHub")){
-                System.out.println("Button test is " + button.getText());
-        }
-            else System.out.println("The btn text is not correct");
+        driver.get("https://github.com/");// открываем сайт
+        driver.findElement(By.xpath("//*[@id=\"user[login]\"]")).sendKeys("Test User Name"); //находим елемент и указываем юзернейм
+        driver.findElement(By.xpath("//*[@id=\"user[email]\"]")).sendKeys("testEmail@gmail.com");// находим и указываем емайл
+        driver.findElement(By.xpath("//*[@id=\"user[password]\"]")).sendKeys("3837847");
+        driver.findElement(By.xpath("/html/body/div[4]/div[1]/div/div/div[2]/div/form/button")).submit();
 
-        //button.submit();//вызываем метод submit для елемента button
-        driver.findElement(By.xpath("/html/body/div[4]/div[1]/div/div/div[2]/div/form/button")).click();
 
         //driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
     }
