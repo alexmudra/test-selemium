@@ -13,16 +13,19 @@ import java.util.concurrent.TimeUnit;
  * Created by Alex on 2/25/2018.
  */
 public class MainClass {
+
+    static WebDriver driver; // для универсальности доступа вынесли драйвер за пределы метода
+
     public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
         System.setProperty("webdriver.gecko.driver", "D:\\QA\\testselenium\\drivers\\geckodriver.exe");// указали путь к драйверу
-        WebDriver driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
+        driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
 
         /*метод для увеличения ожидания загрузки елемента(в секундах). Используем вначале програмы*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         /*методы для управления размером окна браузера*/
         //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
-        driver.manage().window().setSize(new Dimension(1330, 900));
+        driver.manage().window().setSize(new Dimension(1330, 800));
 
         /*РАБОТА С ТЕКСТОВЫМИ ПОЛЯМИ. КАК ЗАПОЛНЯТЬ И ОТОБРАЖАТЬ ТЕКСТ В ТЕКСТОВЫХ ПОЛЯХ*/
 
@@ -112,9 +115,16 @@ public class MainClass {
         * */
         System.out.println(driver.findElement(By.xpath("//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]")).isSelected()); //проверяем тру или фолс
         driver.findElement(By.xpath("//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]")).click();// ставим галочку на етом же чекбоксе
-        System.out.println(driver.findElement(By.xpath("//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]")).isSelected()); //проверяем тру или
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]")).isSelected()); //выводим на екран значение тру или фолс
 
         driver.close();// закрить попап вікно
         driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
+    }
+        //Поскольку у нас много повторяющегося кода для чекбоксов и радиботонов-мы напишем отдельный метод для них
+
+    public static void selectCheckBox (String name){//создаем отдельный метод (код метода нужно доработать)
+        String rbXpath = "//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]";
+        if (!driver.findElement(By.xpath("//*[@id=\"filter_processor_13288\"]/label/a/span/i[1]")).isSelected());;//делаем условие проверку выделен или не выделен радиобатон
+            driver.findElement(By.xpath(String.format(rbXpath, name))).click();//драйвер будет кликать если икспас содержит в себе имя(код нужно доработать)
     }
 }
