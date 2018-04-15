@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.SourceType;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -26,55 +27,36 @@ public class MainClass {
 
         /*метод для увеличения ожидания загрузки елемента(в секундах). Используем вначале програмы*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        //driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);// неявное ожидание загрузки страницы
+        //driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);//неявное ожидание отработки скриптов
         /*методы для управления размером окна браузера*/
         //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
-        driver.manage().window().setSize(new Dimension(1330, 800));
+        driver.manage().window().setSize(new Dimension(1300, 700));
+
+        //РОБОТА З ЧЕКБОКСАМИ ТА ГРУПАМИ ЧЕКБОКСІВ
+
+        driver.get("https://aquamarket.ua/ru/84-voda-i-napitki");//відкрили сайт для тестування
+
+        // Зробимо список всих товарів, ініціалізуємо перемінну checkboxes і присвоюємо їй драйвер з ікспасом чекбоксів
+        //використаєм метод findElements щоб створити список з елементів
+        List<WebElement> cheсkboxes = driver.findElements(By.xpath("//div[@class=\"categories-filter layered-filter\"]//label[@class=\"control control--checkbox\"]"));
+
+        //chekboxes.get(5).click(); клікнемо на 6 чекбокс із всього списку
 
 
-        //РАБОТА С ЛИСТ-БОКСАМИ ИЛИ ВЫПАДАЮЩИМИ СПИСКАМИ
-
-        //открываем форму регистрации на гугл
-        driver.get("https://accounts.google.com/SignUp?continue=https%3A%2F%2Fwww.google.com.ua%2F_%2Fchrome%2Fnewtab%3Fei%3DWGHGWvfsCcfv6QSllafIAw%26yv%3D2&hl=ru");
-
-        //Вызовем новый метод selectOption и передадим имена и значения листбоксов. Метод запустит и выберет то что нужно со списков
-
-        selectOption("Пол", "Мужской");
-        selectOption("Страна","Италия (Italia)");
+        //створимо цикл який буде порівнювати к-сть чекбоксів розділі на напишемо повідомлення результату в термінал
+        if (cheсkboxes.size() == 10)
+            System.out.println("10 checkboxes it's OK");
+            else System.out.println("Less than 10 checkboxes. It's Fail");
 
 
-     /*   driver.findElement(By.xpath("(//strong[text()='Пол']/following-sibling::div/div[@role='listbox'])[1]")).click();//нашли и кликнули на листбокс с Пол
-        driver.findElement(By.xpath("(//div[text()='Мужской']/parent::div[@role='option'])")).click();//кликаем по опции "Мужской" в листбоксе ПОЛ
+        //розглянемо спосіб як виділити всі чекбокси
+        for (WebElement checkbox : cheсkboxes){
+            checkbox.click();
+        }
 
-        //выберем еще значения с листбокса Страна
-        driver.findElement(By.xpath("(//strong[text()='Страна']/following-sibling::div/div[@role='listbox'])[1]")).click();//нашли и кликнули на листбокс с Страна
-        driver.findElement(By.xpath("(//div[text()='Аруба (Aruba)']/parent::div[@role='option'])")).click();//кликаем по опции "Аруба" в листбоксе Страна
-    */
-        //Напишем отдельный метод для выбора листбоксов и значений в листбоксах
+        driver.quit();// обязательно указывать вконце теста даны й метод для завершения работы драйвера
 
-        //driver.close();// закрить попап вікно
-        //driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
-    }
-        //Поскольку у нас много повторяющегося кода для чекбоксов и радиботонов-мы напишем отдельный метод для их обработки
-
-        //Напишем отдельный метод для выбора листбоксов и значений в листбоксах
-    public static void selectOption(String listName, String option ) { //создали метод который будет принимать 2 стринговых значения
-
-        //сосдадим 2 локатора чтобы не привязиваться к жестким условиям метода
-
-        //мы заменили опцию Страна на '%s' и использовали метод .format и присвоили значение переменной listName
-        String listXpath = String.format("(//strong[text()='%s']/following-sibling::div/div[@role='listbox'])[1]",listName );
-
-        //вместо опции Аруба (Aruba) мы заменили на '$s'использовали метод .format и присвоили значение переменной option
-        String optionXpath = String.format("(//div[text()='%s']/parent::div[@role='option'])", option);
-
-        //используем переменные/локаторы listName and option в методе findElement
-        driver.findElement(By.xpath(listXpath)).click();//передаем новый икспас listXpath в метод
-        driver.findElement(By.xpath(optionXpath)).click();//передаем новый икспас optionXpath в метод
-
-
-        driver.close();// закрить попап вікно
-        driver.quit();// обязательно указывать вконце теста даный метод для завершения работы драйвера
     }
 
 }
