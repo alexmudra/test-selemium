@@ -26,34 +26,34 @@ public class MainClass {
         driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
 
         /*метод для увеличения ожидания загрузки елемента(в секундах). Используем вначале програмы*/
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //WebDriver.Timeouts = driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);// неявное ожидание загрузки страницы
         //driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);//неявное ожидание отработки скриптов
         /*методы для управления размером окна браузера*/
         //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
         driver.manage().window().setSize(new Dimension(1300, 700));
 
-        //РОБОТА З ЧЕКБОКСАМИ ТА ГРУПАМИ ЧЕКБОКСІВ
+        //РОБОТА З ТАБЛИЦЯМИ
 
-        driver.get("https://aquamarket.ua/ru/84-voda-i-napitki");//відкрили сайт для тестування
+        driver.get("https://www.w3schools.com/html/html_tables.asp");//відкриваємо ресурс з таблицею
+        //обявим та присвоїм перемінній tableElement ікспас таблиці з ресурсу
+        WebElement tableElement = driver.findElement(By.xpath("//div[@class=\"w3-example\"]//table[@id=\"customers\"]"));
+        //Напишем окремий клас Table з методами для роботи з таблицями (див. клас окремо в ІДЕ)
 
-        // Зробимо список всих товарів, ініціалізуємо перемінну checkboxes і присвоюємо їй драйвер з ікспасом чекбоксів
-        //використаєм метод findElements щоб створити список з елементів
-        List<WebElement> cheсkboxes = driver.findElements(By.xpath("//div[@class=\"categories-filter layered-filter\"]//label[@class=\"control control--checkbox\"]"));
+        Table table = new Table(tableElement, driver);//створюємо об'єкт классу Table з назвою table
 
-        //chekboxes.get(5).click(); клікнемо на 6 чекбокс із всього списку
+        System.out.println("Rows number is " + table.getRows().size());//виведемо к-сть рядків використовуючи методи з таблиці Table (class Table)
+
+        System.out.println(table.getValueFromCell(2, 3));
+        System.out.println(table.getValueFromCell(4, 1));//виведемо інфо із 4 рядка і 1 заголовку
+
+        System.out.println(table.getValueFromCell(2, "Company"));//виведемо значення по номеру 2 рядка і імені заголовка "Company"
+        System.out.println(table.getValueFromCell(2, 3));
+        System.out.println(table.getValueFromCell(1, "Country"));//виведемо інфо із 4 рядка і 1 заголовку
+
+        System.out.println(table.getValueFromCell(2, "Contact"));//виведемо значення по номеру 2 рядка і імені заголовка "Company"
 
 
-        //створимо цикл який буде порівнювати к-сть чекбоксів розділі на напишемо повідомлення результату в термінал
-        if (cheсkboxes.size() == 10)
-            System.out.println("10 checkboxes it's OK");
-            else System.out.println("Less than 10 checkboxes. It's Fail");
-
-
-        //розглянемо спосіб як виділити всі чекбокси
-        for (WebElement checkbox : cheсkboxes){
-            checkbox.click();
-        }
 
         driver.quit();// обязательно указывать вконце теста даны й метод для завершения работы драйвера
 
