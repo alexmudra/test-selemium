@@ -22,7 +22,7 @@ public class MainClass {
 
     public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
 
-        System.setProperty("webdriver.gecko.driver", "D:\\QA\\testselenium\\drivers\\geckodriver.exe");// указали путь к драйверу
+        System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// указали путь к драйверу
         driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
 
         /*метод для увеличения ожидания загрузки елемента(в секундах). Используем вначале програмы*/
