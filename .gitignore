@@ -1,0 +1,10 @@
+logs/
+geckodriver.exe
+.idea
+testselenium.iml
+JavaQA.iml
+
+testselenium/*.iml
+testselenium/*.exe
+
+lib/
