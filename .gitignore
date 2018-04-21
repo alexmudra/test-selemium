@@ -8,3 +8,5 @@ testselenium/*.iml
 testselenium/*.exe
 
 lib/
+
+.gitignore
