@@ -4,59 +4,75 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.SourceType;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-/**
- * Created by Alex on 2/25/2018.
- */
-
 
 public class MainClass {
 
     static WebDriver driver; // для универсальности доступа вынесли драйвер за пределы метода
 
+    static WebDriverWait wait;
+
+    //WebDriverWait wait = (new WebDriverWait(driver, 5);// напишемо примусове/ЯВНЕ очікування
+
+    //використовуємо вбудований клас WebDriverWait, створимо екземпляр класу з назвою wait, передамо туди наш драйвер і вкажимо очікування
+    // вебелементу 5 секунд
+    //static WebDriverWait wait = new WebDriverWait(driver, 5);//ми цей метод потім будемо використовувати всередині методів
+
+
 
     public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
 
-        System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// указали путь к драйверу
+        System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// ук
+        // азали путь к драйверу
         driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
-
-        /*метод для увеличения ожидания загрузки елемента(в секундах). Используем вначале програмы*/
-        //WebDriver.Timeouts = driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);// неявное ожидание загрузки страницы
-        //driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);//неявное ожидание отработки скриптов
         /*методы для управления размером окна браузера*/
         //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
         driver.manage().window().setSize(new Dimension(1300, 700));
 
-        //РОБОТА З ТАБЛИЦЯМИ
 
-        driver.get("https://www.w3schools.com/html/html_tables.asp");//відкриваємо ресурс з таблицею
-        //обявим та присвоїм перемінній tableElement ікспас таблиці з ресурсу
-        WebElement tableElement = driver.findElement(By.xpath("//div[@class=\"w3-example\"]//table[@id=\"customers\"]"));
-        //Напишем окремий клас Table з методами для роботи з таблицями (див. клас окремо в ІДЕ)
+        //РОБОТА З ОЖИДАНИЯМИ (Implicity and Explicity whait) явним та неявними очікуваннями
 
-        Table table = new Table(tableElement, driver);//створюємо об'єкт классу Table з назвою table
-
-        System.out.println("Rows number is " + table.getRows().size());//виведемо к-сть рядків використовуючи методи з таблиці Table (class Table)
-
-        System.out.println(table.getValueFromCell(2, 3));
-        System.out.println(table.getValueFromCell(4, 1));//виведемо інфо із 4 рядка і 1 заголовку
-
-        System.out.println(table.getValueFromCell(2, "Company"));//виведемо значення по номеру 2 рядка і імені заголовка "Company"
-        System.out.println(table.getValueFromCell(2, 3));
-        System.out.println(table.getValueFromCell(1, "Country"));//виведемо інфо із 4 рядка і 1 заголовку
-
-        System.out.println(table.getValueFromCell(2, "Contact"));//виведемо значення по номеру 2 рядка і імені заголовка "Company"
+        // Явне очікування explicityWait використовується для того щоб задати очікування для конеретної умови (очікування тільки один раз для умови)
+        //Неявне очікування implicityWait для того щоб задати очікування для конкрентного елементу
 
 
+        driver.get("https://pz.25h8.auction/tenders/index");//відкриваємо ресурс для тестування
 
-        driver.quit();// обязательно указывать вконце теста даны й метод для завершения работы драйвера
+        wait = new WebDriverWait(driver, 5);//об'єкт класу wait
+
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("///html/body/div[1]/div[3]/h1"]"))));
+      //presenceOfAllElementsLocatedBy(By.xpath це умове при якій якщо елемент зявитьсня на сторінці то запуститься код далі
+
+
+        selectOption("ДК 015:97", );
+        selectOption();
 
     }
+        public static void selectOption (String listName, String option){
 
+            String listXpath = String.format("//*[@id=\"additional-classifications-select\"]", listName);
+            String optionXpath = String.format("//*//*[@id=\"additional-classifications-select\"]/option[5]", option);
+
+            driver.findElement(By.xpath(listXpath)).click();
+            wait.until(ExpectedConditions.visibilityOf(By.xpath(listXpath)));// умов може буде дуже багато
+
+            driver.findElement(By.xpath(optionXpath)).click();
+            wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(optionXpath)));// умов може буде дуже багато
+
+
+
+
+
+
+            driver.quit();// обязательно указывать вконце теста даны й метод для завершения работы драйвера
+        }
 }
+
