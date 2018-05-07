@@ -39,16 +39,45 @@ public class MainClass {
         driver.manage().window().setSize(new Dimension(1300, 700));
 
 
-        //РОБОТА З ВИКОНАННЯМ JAVA SCRIPT КОДУ НА САЙТІ
+        //РОБОТА-обробка З Allert (в основному JAVA SCRIPT) НА САЙТАХ
 
-        driver.get("https://pz.25h8.auction/tenders/index");//відкриваємо ресурс для тестування
+        //відкриваємо ресурс для тестування
+        driver.get("http://www.oracle.com/technetwork/java/javase/documentation/jdk8-doc-downloads-2133158.html");
 
-        JavascriptExecutor jse = (JavascriptExecutor)driver;//ініціалізуємо JS екзекутор
-        //jse.executeScript("alert('Omh. So cool JS code');");//пишемо код в форматі JS
+        driver.findElement(By.xpath("//a[text()=\"jdk-8u171-docs-all.zip\"]")).click();// клікаємо і побачимо JS allert
 
-        //Попробуєм поскролити сторінку вниз за допомогою JS
-        jse.executeScript("window.scrollBy(0, 2000)", ""); //скролимо сторінку вниз на 1000 пікселів
-        jse.executeScript("window.scrollBy(0, -500)", "");//скролимо сторінку вверх на 500 пікселів
+        //конструкція яка поставить затримку в 3 секунди між виконанням коду findElement і switchTo
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Перейдемо на вікно з алертом за допомогою методу switch to
+        driver.switchTo().alert().accept();
+        //метод .accept це підтвердити дію (типу ОК чи submit)
+        //метод /dismiss це відхилити дію (cancel або no)
+
+        //Попробуємо створити свій алерт на сайті гугл
+        driver.get("http://www.google.com");
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("confirm ('Are you sure?');");
+        //затримка в 3 секунди
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.switchTo().alert().accept();
+
+        //Спробуємо метод .dismiss
+        driver.switchTo().alert().dismiss();//цей метод клікне на кнопці відхилити в
+
+
+
+
+
+
 
 
     }
