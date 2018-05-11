@@ -42,7 +42,7 @@ public class Windows {
         driver.switchTo().window(mainWindow);//переключаємось на попереднє вікно
 
         driver.findElement(By.xpath("//*[@id=\"tabsample0\"]/li[6]/a/span")).click();
-        
+
 
         /* Для того щоб переключатися між вікнами за допомогою цикла див. код внизу
 
