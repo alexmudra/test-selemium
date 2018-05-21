@@ -66,14 +66,14 @@ public class DoScreenshots {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);//в перемінну screenshot вкладемо конструкцію для того щоб робити скріни
 
         //тепер збережемо на жорсткий диск FILE з скріншотом в якусь директорію
-        try {
+        /*try {
             FileUtils.copyFile(screenshot, new File("D:\\Screenshots" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
 
         driver.quit();
     }
 }
-
