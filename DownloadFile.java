@@ -42,6 +42,6 @@ public class DownloadFile {
 
         driver.findElement(By.xpath("//input[@type=\"file\"]")).sendKeys("D:\\c.png");//методу sendKeys передамо шлях до картинки яку ми завантажимо
         //в Гугл
-        
+
     }
 }

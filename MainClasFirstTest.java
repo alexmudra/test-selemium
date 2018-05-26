@@ -18,31 +18,31 @@ public class MainClass {
 
     static WebDriver driver; // для универсальности доступа вынесли драйвер за пределы метода
 
-    //static WebDriverWait wait;
+        //static WebDriverWait wait;
 
-    //WebDriverWait wait = (new WebDriverWait(driver, 5);// напишемо примусове/ЯВНЕ очікування
+        //WebDriverWait wait = (new WebDriverWait(driver, 5);// напишемо примусове/ЯВНЕ очікування
 
-    //використовуємо вбудований клас WebDriverWait, створимо екземпляр класу з назвою wait, передамо туди наш драйвер і вкажимо очікування
-    // вебелементу 5 секунд
-    //static WebDriverWait wait = new WebDriverWait(driver, 5);//ми цей метод потім будемо використовувати всередині методів
+        //використовуємо вбудований клас WebDriverWait, створимо екземпляр класу з назвою wait, передамо туди наш драйвер і вкажимо очікування
+        // вебелементу 5 секунд
+        //static WebDriverWait wait = new WebDriverWait(driver, 5);//ми цей метод потім будемо використовувати всередині методів
 
-    public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
+        public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
 
-        //System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// Вказали путь до драйверу для браузеру ФФ
-        System.setProperty("webdriver.chrome.driver", "D:\\workspace\\chromedriver\\chromedriver.exe");// Вказали шлях до драйверу браузеру Хром
-        //driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
-        driver = new ChromeDriver(); //иніціалізували драйвер для браузеру Хром
+            //System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// Вказали путь до драйверу для браузеру ФФ
+            System.setProperty("webdriver.chrome.driver", "D:\\workspace\\chromedriver\\chromedriver.exe");// Вказали шлях до драйверу браузеру Хром
+            //driver = new FirefoxDriver();// инициализировали наш драйвер (FF драйвер)
+            driver = new ChromeDriver(); //иніціалізували драйвер для браузеру Хром
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//вказали неявне очікування
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//вказали неявне очікування
 
-        //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
-        driver.manage().window().setSize(new Dimension(1300, 700));
+            //driver.manage().window().maximize(); // метод открывает в максимальном размере окно браузера
+            driver.manage().window().setSize(new Dimension(1300, 700));
 
 
-        //РОБОТА-обробка З Allert (в основному JAVA SCRIPT) НА САЙТАХ
+            //РОБОТА-обробка З Allert (в основному JAVA SCRIPT) НА САЙТАХ
 
-        //відкриваємо ресурс для тестування
-        driver.get("http://www.oracle.com/technetwork/java/javase/documentation/jdk8-doc-downloads-2133158.html");
+            //відкриваємо ресурс для тестування
+            driver.get("http://www.oracle.com/technetwork/java/javase/documentation/jdk8-doc-downloads-2133158.html");
 
         driver.findElement(By.xpath("//a[text()=\"jdk-8u171-docs-all.zip\"]")).click();// клікаємо і побачимо JS allert
 
