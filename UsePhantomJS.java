@@ -36,7 +36,7 @@ public class UsePhantomJS {
         System.setProperty("webdriver.chrome.driver", "D:\\workspace\\chromedriver\\chromedriver.exe");// Вказали шлях до драйверу браузеру Хром
         System.setProperty("phantom.binary.path", "D:\\workspace\\phantomjs.exe");//встановлюємо залежність для фантомдж драйверу
         //driver = new ChromeDriver(); //иніціалізували драйвер для браузеру Хром
-        driver = new PhantomJSDriver();
+        //driver = new PhantomJSDriver();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//вказали неявне очікування
 
@@ -61,7 +61,7 @@ public class UsePhantomJS {
 
         //Попробуємо створити свій алерт на сайті гугл
         driver.get("http://www.google.com");
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("confirm ('Are you sure?');");
         //затримка в 3 секунди
         try {
@@ -73,4 +73,5 @@ public class UsePhantomJS {
 
         //Спробуємо метод .dismiss
         driver.switchTo().alert().dismiss();//цей метод клікне на кнопці відхилити в
+    }
 }

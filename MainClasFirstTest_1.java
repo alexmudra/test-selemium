@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class MainClass {
+public class MainClassFirst_1{
 
     static WebDriver driver; // для универсальности доступа вынесли драйвер за пределы метода
 
@@ -72,13 +72,6 @@ public class MainClass {
 
         //Спробуємо метод .dismiss
         driver.switchTo().alert().dismiss();//цей метод клікне на кнопці відхилити в
-
-
-
-
-
-
-
 
     }
 }

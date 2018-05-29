@@ -25,7 +25,7 @@ public class MainPage { //створимо клас який буде опису
     public LoginPage clickSignIn() {
         driver.findElement(signInButton).click();//метод для кліку на кнопку Sign In
         //при кліку на кнопку Sign In ми будемо попадати на сторінку Log In page
-        return new LoginPage(driver) // тому нам треба повертати (раніше створений клас-об'єкт)LoginPage і передати туди driver
+        return new LoginPage(driver);// тому нам треба повертати (раніше створений клас-об'єкт)LoginPage і передати туди driver
     }
 
     public SignUpPage clickSignUpFormButton() {
@@ -68,7 +68,5 @@ public class MainPage { //створимо клас який буде опису
 
 
     }
-
-
 }
 
