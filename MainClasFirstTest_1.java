@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class MainClassFirst_1{
+public class MainClasFirstTest_1{
 
     static WebDriver driver; // для универсальности доступа вынесли драйвер за пределы метода
 
@@ -26,7 +26,7 @@ public class MainClassFirst_1{
         // вебелементу 5 секунд
         //static WebDriverWait wait = new WebDriverWait(driver, 5);//ми цей метод потім будемо використовувати всередині методів
 
-        public static void main(String[] args) {// создали метод чтобы инициализировать драйвер GecoDriver для FF
+        public static void main(String[] args){// создали метод чтобы инициализировать драйвер GecoDriver для FF
 
             //System.setProperty("webdriver.gecko.driver", "D:\\workspace\\geckodriver\\geckodriver.exe");// Вказали путь до драйверу для браузеру ФФ
             System.setProperty("webdriver.chrome.driver", "D:\\workspace\\chromedriver\\chromedriver.exe");// Вказали шлях до драйверу браузеру Хром
